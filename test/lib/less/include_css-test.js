@@ -1,12 +1,12 @@
 var fs = require("fs");
 var assert = require("assert");
 
-var includeCss =  require("../../../lib/less/include_css.js").IncludeCss;
-var paths = ["./test/mock"];
+var includeCss = require("../../../lib/less/include_css.js").IncludeCss;
+var paths = ["./test/mock/include_test"];
 
-var extendCssString = fs.readFileSync("./test/mock/include_css_test.css","utf-8");
-var extendCssStringExpect = fs.readFileSync("./test/mock/include_css_test_result.css","utf-8");
-var hogeCssString   = fs.readFileSync("./test/mock/hoge.css","utf-8");
+var extendCssString = fs.readFileSync("./test/mock/include_test/extend_test.css","utf-8");
+var extendCssStringExpect = fs.readFileSync("./test/mock/include_test/extend_test_result.css","utf-8");
+var hogeCssString   = fs.readFileSync("./test/mock/include_test/hoge.css","utf-8");
 
 // test
 var convertPatterns =[
@@ -21,9 +21,9 @@ var notConvertPatterns = [
 module.exports = {
     // resolvePath
     testResolvePath : function(){
-        var paths = ["not_found_path","./test/mock"]
+        var paths = ["not_found_path","./test/mock/include_test"]
         var resolve = includeCss.resolvePath("hoge.css",paths);
-        var expect = "test\\mock\\hoge.css" //TODO
+        var expect = "test\\mock\\include_test\\hoge.css" //TODO
         assert.equal(expect,resolve);
     },
     testResolvePathFalse : function(){
@@ -51,4 +51,3 @@ module.exports = {
         assert.equal(extendCssStringExpect, result);
     }
 }
-
