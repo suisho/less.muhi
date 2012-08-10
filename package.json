@@ -1,0 +1,16 @@
+{
+  "name": "less.muhi",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "description": "Less helper.(Multiple, Hook file change, Include Css)",
+  "dependencies": {
+    "less": "https://github.com/cloudhead/less.js/tarball/master",
+    "fs-watch-tree": ">= 0.2.0",
+    "synchronize": ">= 0.3.0",
+    "colors": ">= 0.3.0",
+  },
+  "devDepencies": {
+    "buster": "~0.6.2"
+  }
+}
