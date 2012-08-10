@@ -1,9 +1,9 @@
 var assert = require('assert');
-var importTree = require('../../lib/import_tree');
+var ImportTree = require('../../lib/import_tree');
 
 module.exports = {
     testDescendant : function(){
-        var tree = new importTree.ImportTree();
+        var tree = new ImportTree();
 
         tree.push("_a","_b");
         tree.push("_b","c");
