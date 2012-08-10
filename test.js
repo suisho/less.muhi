@@ -1,11 +1,12 @@
-
 var path = require("path");
 var color = require("colors");
 var util = require("util");
 //module.paths.push(path.resolve("./app/lib"));
 //console.log(module.paths);
 var tests = [
-  "./test/lib/less/include_css-test.js"
+  "./test/lib/less/include_css-test.js",
+  "./test/lib/less/convert-test.js",
+  "./test/lib/less/replace_rule-test.js",
 ];
 
 function testing(testName, testFunc){
@@ -18,7 +19,7 @@ function testing(testName, testFunc){
     console.log(e.stack);
   }
   if(success){
-    console.log("success".green);
+    console.log(" => success".green);
   }
 }
 
@@ -37,6 +38,5 @@ for(var i=0; i < tests.length; i++){
       testing(key, item);
     }
   }
-  console.log("End test:".cyan +testFile);
-
+  console.log("End test:".cyan +testFile+"\n");
 }
