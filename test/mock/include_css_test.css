@@ -1,0 +1,7 @@
+@import "hoge.css";
+@import 'fuga.css';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+.origin_css{
+    background: black;
+}

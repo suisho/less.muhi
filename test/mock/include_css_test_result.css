@@ -1,0 +1,13 @@
+.hoge_css{
+    width: 100px;
+}
+
+.fuga_class{
+    height:100px;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+.origin_css{
+    background: black;
+}
