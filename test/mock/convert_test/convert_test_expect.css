@@ -1,0 +1,14 @@
+.hoge_css_class{
+  color: red;
+}
+
+.mixin2_class {
+  width: 100px;
+}
+.some_item {
+  color: red;
+  background: blue;
+}
+.mixin_item {
+  color: red;
+}
