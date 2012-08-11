@@ -19,6 +19,13 @@ exports.require = function(path){
   return require(path);
 }
 
+function diffError(error){
+  if(error.actual && error.expected){
+    var diff = require("difflet")({"indent":2});
+    diff(error.actual, error.expected).pipe(process.stdout);
+  }
+}
+
 function testing(testName, testFunc, failOnError){
   console.log("Test ".magenta + testName);
   try{
@@ -28,10 +35,7 @@ function testing(testName, testFunc, failOnError){
     var inspect = util.inspect(e);
     console.error(inspect.red);
     //console.trace();
-    if(e.actual && e.expected){
-      var diff = require("difflet")({"indent":2});
-      diff(e.actual, e.expected).pipe(process.stdout);
-    }
+    diffError(e);
     if(failOnError){
       throw e;
     }
