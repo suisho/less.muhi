@@ -26,9 +26,8 @@ module.exports = {
   },
   testconvertSingleFile : function(){
     var converter = new Converter(paths);
-    converter.outputFileRule.init(
-      {".less":"_result.css"}
-    );
+    converter.outputFileRule.clear();
+    converter.outputFileRule.add(".less","_result.css");
     converter.convertSingleFile("convert_test.less",function(err, destFilePath, imports){
       var result = fs.readFileSync(destFilePath,"utf8");
       var expect = fs.readFileSync("./test/mock/convert_test/convert_test_expect.css","utf8");
