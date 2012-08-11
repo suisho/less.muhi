@@ -42,11 +42,18 @@ function testing(testName, testFunc, failOnError){
   return success;
 }
 
+function cleanConsle(){
+  var lines = process.stdout.getWindowSize()[1];
+  for(var i = 0; i < lines; i++) {
+      console.log('\r\n');
+  }
+}
+
 var testCount = 0;
 var successCount = 0;
 
 var tests = fsExtednd.lsRecursive("./test");
-
+cleanConsle();
 try{
   for(var i=0; i < tests.length; i++){
     var testFile = tests[i];
@@ -56,18 +63,27 @@ try{
     var success = true;
 
     console.log("Start test:".cyan +testFile);
-    var test = require(testFile);
-    for(var key in test){
-      var item = test[key];
-      if(typeof(item) !== "function"){
+    var testClass = require(testFile);
+
+    var setUp = testClass.setUp || function(){};
+    var tearDown = testClass.tearDown || function(){};
+
+    for(var methodName in testClass){
+      var func = testClass[methodName];
+      if(typeof(func) !== "function"){
         continue;
       }
-      if(key.match(/test.*/)){
-        var success = testing(key, item, failOnError);
-        testCount++;
-        if(success){
-          successCount++;
-        }
+      if(/test.*/.test(methodName) == false){
+        continue;
+      }
+
+      //Testing!
+      setUp();
+      var success = testing(methodName, func, failOnError);
+      tearDown();
+      testCount++;
+      if(success){
+        successCount++;
       }
     }
     console.log("End test:".cyan +testFile+"\n");
